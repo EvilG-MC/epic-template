@@ -1,0 +1,44 @@
+{
+  "name": "bot-template",
+  "version": "1.0.0",
+  "description": "A shitty discord bot template.",
+  "main": "./dist/index.js",
+  "type": "module",
+  "keywords": [],
+  "author": "JustEvil",
+  "license": "MIT",
+  "homepage": "https://github.com/EvilG-MC/epic-template#readme",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvilG-MC/epic-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EvilG-MC/epic-template/issues"
+  },
+  "scripts": {
+    "watch": "tsc -w",
+    "compile": "tsc",
+    "start": "node ./dist/index.js"
+  },
+  "imports": {
+    "#template/types": "./dist/structures/lib/types/index.js",
+    "#template/config": "./dist/structures/util/data/Configuration.js",
+    "#template/constants": "./dist/structures/util/data/Contants.js",
+    "#template/client": "./dist/structures/base/client/Base.js",
+    "#template/functions": "./dist/structures/lib/functions/index.js",
+    "#template/utils/*": "./dist/structures/util/*"
+  },
+  "dependencies": {
+    "ascii-table3": "^0.8.2",
+    "chalk": "^5.3.0",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
+    "glob": "^10.3.10"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+}
