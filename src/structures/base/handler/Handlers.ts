@@ -129,7 +129,7 @@ export class Handlers {
     public async loadMenus() {
         const { client } = this;
 
-        const table = new AsciiTable3("Buttons").setStyle("unicode-single");
+        const table = new AsciiTable3("Menus").setStyle("unicode-single");
         const files = await loadFiles("components/menus");
 
         if (!files.length) table.addRow("No buttons.", "Empty.");
@@ -143,7 +143,7 @@ export class Handlers {
 
                 if (menu.type !== ActionRowType.SelectMenu) return table.addRow(menu.customId, "Missing menu type.");
 
-                if (menu.options?.multiple && !menu.options.value) return table.addRow(menu.customId, "Invalid listen type.");
+                if (menu.options?.multiple && menu.options.value) return table.addRow(menu.customId, "Invalid listen type.");
                 if (!menu.options?.multiple && !menu.options?.value) return table.addRow(menu.customId, "Invalid listen type.");
 
                 if (menu.options?.disabled) return table.addRow(menu.customId, "Disabled.");
