@@ -10,7 +10,7 @@ This repo uses the: [MIT](LICENSE.md) license.
 
 **1**. Clone the branch: 
 ```bash
-git clone https://github.com/EvilG-MC/epic-template.git  --branch feat/context
+git clone https://github.com/EvilG-MC/epic-template.git --branch feat/context
 ```
 
 **2**. Add the new files:
