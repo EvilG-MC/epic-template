@@ -1,11 +1,11 @@
 import { Base } from "#template/client";
-import { ActionRowType, ClientComponent, ClientEvent, SlashCommand } from "#template/types";
+import { ActionRowType, ClientComponent, ClientEvent, ClientCommand } from "#template/types";
 import { loadFiles } from "#template/utils/function/loadFiles.js";
 
 import { AsciiTable3 } from "ascii-table3";
 import { pathToFileURL } from "node:url";
 import { Events } from "./validation/Events.js";
-import { ApplicationCommandType, Awaitable } from "discord.js";
+import { ApplicationCommandType, Awaitable, ContextMenuCommandType } from "discord.js";
 
 export class Handlers {
     private client: Base;
@@ -53,13 +53,13 @@ export class Handlers {
         const { client } = this;
 
         const table = new AsciiTable3("Commands").setStyle("unicode-single");
-        const files = await loadFiles("commands");
+        const files = await loadFiles("commands/interaction");
 
         if (!files.length) table.addRow("No commands.", "Empty.");
 
         await Promise.all(
             files.map(async (file) => {
-                const command: SlashCommand = await this.import(file);
+                const command: ClientCommand<ApplicationCommandType.ChatInput> = await this.import(file);
 
                 if (!command) return table.addRow("Missing", "Missing command.");
                 if (!command.data) return table.addRow("Missing", "Missing command data.");
@@ -73,7 +73,7 @@ export class Handlers {
                 if (command.options?.toGuild) client.devArray.push(command.data);
                 else client.appArray.push(command.data);
 
-                client.commands.set(command.data.name, command);
+                client.commands.interaction.set(command.data.name, command);
                 table.addRow(command.data.name, "Loaded.");
             }),
         );
@@ -99,6 +99,36 @@ export class Handlers {
         };
     };
 
+    public async loadContext() {
+        const { client } = this;
+
+        const table = new AsciiTable3("Commands").setStyle("unicode-single");
+        const files = await loadFiles("commands/context");
+
+        if (!files.length) table.addRow("No commands.", "Empty.");
+
+        await Promise.all(
+            files.map(async (file) => {
+                const command: ClientCommand<ContextMenuCommandType> = await this.import(file);
+
+                if (!command) return table.addRow("Missing", "Missing command.");
+                if (!command.data) return table.addRow("Missing", "Missing command data.");
+                if (!command.data.name) return table.addRow("Missing", "Missing command name.");
+
+                if (command.data.type === ApplicationCommandType.ChatInput) return table.addRow(command.data.name, "Invalid command type.");
+                if (command.options?.disabled) return table.addRow(command.data.name, "Disabled.");
+
+                if (command.options?.toGuild) client.devArray.push(command.data);
+                else client.appArray.push(command.data);
+
+                client.commands.context.set(command.data.name, command);
+                table.addRow(command.data.name, "Loaded.");
+            }),
+        );
+
+        return console.log(table.toString());
+    };
+
     public async loadButtons() {
         const { client } = this;
 
@@ -114,7 +144,7 @@ export class Handlers {
                 if (!button) return table.addRow("Missing", "Missing button.");
                 if (!button.customId) return table.addRow("Missing", "Missing button customId.");
 
-                if (button.type !== ActionRowType.Button) return table.addRow(button.customId, "Missing button type.");
+                if (button.type !== ActionRowType.Button) return table.addRow(button.customId, "Invalid component type.");
 
                 if (button.options?.disabled) return table.addRow(button.customId, "Disabled.");
 
@@ -132,7 +162,7 @@ export class Handlers {
         const table = new AsciiTable3("Menus").setStyle("unicode-single");
         const files = await loadFiles("components/menus");
 
-        if (!files.length) table.addRow("No buttons.", "Empty.");
+        if (!files.length) table.addRow("No menus.", "Empty.");
 
         await Promise.all(
             files.map(async (file) => {
@@ -141,7 +171,7 @@ export class Handlers {
                 if (!menu) return table.addRow("Missing", "Missing menu.");
                 if (!menu.customId) return table.addRow("Missing", "Missing menu customId.");
 
-                if (menu.type !== ActionRowType.SelectMenu) return table.addRow(menu.customId, "Missing menu type.");
+                if (menu.type !== ActionRowType.SelectMenu) return table.addRow(menu.customId, "Invalid component type.");
 
                 if (menu.options?.multiple && menu.options.value) return table.addRow(menu.customId, "Invalid listen type.");
                 if (!menu.options?.multiple && !menu.options?.value) return table.addRow(menu.customId, "Invalid listen type.");
@@ -159,10 +189,10 @@ export class Handlers {
     public async loadModals() {
         const { client } = this;
 
-        const table = new AsciiTable3("Buttons").setStyle("unicode-single");
+        const table = new AsciiTable3("Modals").setStyle("unicode-single");
         const files = await loadFiles("components/modals");
 
-        if (!files.length) table.addRow("No buttons.", "Empty.");
+        if (!files.length) table.addRow("No modals.", "Empty.");
 
         await Promise.all(
             files.map(async (file) => {
@@ -171,7 +201,7 @@ export class Handlers {
                 if (!modal) return table.addRow("Missing", "Missing modal.");
                 if (!modal.customId) return table.addRow("Missing", "Missing modal customId.");
 
-                if (modal.type !== ActionRowType.Modal) return table.addRow(modal.customId, "Missing modal type.");
+                if (modal.type !== ActionRowType.Modal) return table.addRow(modal.customId, "Invalid component type.");
 
                 if (modal.options?.disabled) return table.addRow(modal.customId, "Disabled.");
 

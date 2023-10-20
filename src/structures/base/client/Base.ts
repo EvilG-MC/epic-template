@@ -1,7 +1,7 @@
-import { ApplicationCommandDataResolvable, Client, Collection, GatewayIntentBits, Options, Partials } from "discord.js";
+import { ApplicationCommandDataResolvable, ApplicationCommandType, Client, Collection, ContextMenuCommandType, GatewayIntentBits, Options, Partials } from "discord.js";
 
 import { Configuration } from "#template/config";
-import { ActionRowType, ClientComponent, Config, SlashCommand } from "#template/types";
+import { ActionRowType, ClientComponent, Config, ClientCommand } from "#template/types";
 
 import { Logger } from "#template/utils/Logger.js";
 import { Handlers } from "../handler/Handlers.js";
@@ -12,7 +12,11 @@ export class Base extends Client {
     public logger: Logger;
     public handlers: Handlers;
 
-    public commands: Collection<string, SlashCommand>;
+    public commands: {
+        interaction: Collection<string, ClientCommand<ApplicationCommandType.ChatInput>>;
+        context: Collection<string, ClientCommand<ContextMenuCommandType>>;
+    };
+
     public components: {
         buttons: Collection<string, ClientComponent<ActionRowType.Button>>,
         menus: Collection<string, ClientComponent<ActionRowType.SelectMenu>>,
@@ -54,7 +58,11 @@ export class Base extends Client {
         this.logger = new Logger();
         this.handlers = new Handlers(this);
 
-        this.commands = new Collection();
+        this.commands = {
+            interaction: new Collection(),
+            context: new Collection(),
+        };
+
         this.components = {
             buttons: new Collection(),
             menus: new Collection(),
@@ -74,6 +82,7 @@ export class Base extends Client {
 
     private async loadHandlers() {
         await this.handlers.loadEvents();
+        await this.handlers.loadContext();
         await this.handlers.loadButtons();
         await this.handlers.loadMenus();
         await this.handlers.loadModals();
@@ -83,7 +92,8 @@ export class Base extends Client {
         this.logger.warn("Client - Attemping to reload...");
 
         try {
-            this.commands.clear();
+            this.commands.interaction.clear();
+            this.commands.context.clear();
 
             this.components.buttons.clear();
             this.components.menus.clear();

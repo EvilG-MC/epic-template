@@ -1,7 +1,8 @@
 import { createCommand } from "#template/functions";
-import { ActionRowBuilder, ApplicationCommandType, ButtonBuilder, PermissionsBitField } from "discord.js";
+import { ApplicationCommandType, PermissionsBitField } from "discord.js";
 
 export default createCommand({
+    type: ApplicationCommandType.ChatInput,
     data: {
         type: ApplicationCommandType.ChatInput,
         name: "test",
