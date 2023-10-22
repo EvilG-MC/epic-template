@@ -1,5 +1,5 @@
 import { Base } from "#template/client";
-import { ActionRowType, ClientComponent, ClientEvent, SlashCommand } from "#template/types";
+import { ActionRowType, ClientComponent, ClientEvent, SelectMenuRowType, SlashCommand } from "#template/types";
 import { loadFiles } from "#template/utils/function/loadFiles.js";
 
 import { AsciiTable3 } from "ascii-table3";
@@ -136,14 +136,21 @@ export class Handlers {
 
         await Promise.all(
             files.map(async (file) => {
-                const menu: ClientComponent<ActionRowType.SelectMenu> = await this.import(file);
+                const menu: ClientComponent<SelectMenuRowType> = await this.import(file);
 
                 if (!menu) return table.addRow("Missing", "Missing menu.");
                 if (!menu.customId) return table.addRow("Missing", "Missing menu customId.");
 
-                if (menu.type !== ActionRowType.SelectMenu) return table.addRow(menu.customId, "Missing menu type.");
+                // don't ask, i don't want a if of a 3m of large. 
+                const isSelectMenu = menu.type === ActionRowType.StringMenu
+                    || menu.type === ActionRowType.UserMenu
+                    || menu.type === ActionRowType.RoleMenu
+                    || menu.type === ActionRowType.ChannelMenu
+                    || menu.type === ActionRowType.SelectMenu;
 
+                if (!isSelectMenu) return table.addRow(menu.customId, "Invalid menu type.");
                 if (menu.options?.multiple && menu.options.value) return table.addRow(menu.customId, "Invalid listen type.");
+                
                 if (!menu.options?.multiple && !menu.options?.value) return table.addRow(menu.customId, "Invalid listen type.");
 
                 if (menu.options?.disabled) return table.addRow(menu.customId, "Disabled.");

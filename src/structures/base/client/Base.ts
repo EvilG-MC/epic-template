@@ -1,7 +1,7 @@
 import { ApplicationCommandDataResolvable, Client, Collection, GatewayIntentBits, Options, Partials } from "discord.js";
 
 import { Configuration } from "#template/config";
-import { ActionRowType, ClientComponent, Config, SlashCommand } from "#template/types";
+import { ActionRowType, ClientComponent, Config, SelectMenuRowType, SlashCommand } from "#template/types";
 
 import { Logger } from "#template/utils/Logger.js";
 import { Handlers } from "../handler/Handlers.js";
@@ -15,7 +15,7 @@ export class Base extends Client {
     public commands: Collection<string, SlashCommand>;
     public components: {
         buttons: Collection<string, ClientComponent<ActionRowType.Button>>,
-        menus: Collection<string, ClientComponent<ActionRowType.SelectMenu>>,
+        menus: Collection<string, ClientComponent<SelectMenuRowType>>,
         modals: Collection<string, ClientComponent<ActionRowType.Modal>>,
     };
 

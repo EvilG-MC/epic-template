@@ -1,5 +1,5 @@
 import { createCommand } from "#template/functions";
-import { ActionRowBuilder, ApplicationCommandType, ButtonBuilder, PermissionsBitField } from "discord.js";
+import { ActionRowBuilder, ApplicationCommandType, PermissionsBitField, StringSelectMenuBuilder } from "discord.js";
 
 export default createCommand({
     data: {
@@ -16,5 +16,21 @@ export default createCommand({
     },
     execute: async (interaction, client) => {
         //You can test components here...
+
+        const row = new ActionRowBuilder<StringSelectMenuBuilder>()
+            .addComponents(
+                new StringSelectMenuBuilder()
+                    .setCustomId("example-menu")
+                    .setPlaceholder("Test menu")
+                    .addOptions(
+                        {
+                            value: "example-value",
+                            label: "Example value!",
+                            description: "This is a example value!",
+                        },
+                    ),
+            );
+
+            await interaction.reply({ components: [row] });
     },
 });

@@ -10,3 +10,5 @@ export enum ActionRowType {
 
     SelectMenu = 8,
 };
+
+export type SelectMenuRowType = ActionRowType.ChannelMenu | ActionRowType.RoleMenu | ActionRowType.StringMenu | ActionRowType.UserMenu | ActionRowType.SelectMenu;

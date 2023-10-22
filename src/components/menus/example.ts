@@ -3,11 +3,13 @@ import { ActionRowType } from "#template/types";
 
 export default createComponent({
     customId: "example-menu",
-    type: ActionRowType.SelectMenu,
+    type: ActionRowType.StringMenu,
     options: {
         multiple: true,
     },
     execute: async (interaction, client) => {
-        interaction.reply({ content: "example menu!", ephemeral: true });
+        const { values } = interaction;
+
+        await interaction.reply({ content: `example menu! (You selected: ${values[0]})`, ephemeral: true });
     },
 });
