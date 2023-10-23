@@ -105,6 +105,7 @@ export class Base extends Client {
             this.devArray = [];
 
             await this.loadHandlers();
+            await this.deployInteractions();
 
             return this.logger.info("Client - Reload complete.");
         } catch (error) {
