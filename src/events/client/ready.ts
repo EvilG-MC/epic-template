@@ -9,7 +9,7 @@ export default createEvent({
     execute: async (client) => {
         if (!client.user) return;
 
-        await client.handlers.loadCommands();
+        await client.deployInteractions();
 
         client.logger.log(`API - Logged in as: ${client.user.username}.`);
         client.logger.info(`Client - ${client.user.username} v${VERSION} is now ready.`);

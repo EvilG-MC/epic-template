@@ -78,25 +78,7 @@ export class Handlers {
             }),
         );
 
-        console.log(table.toString());
-
-        client.logger.warn("API - Attemping to refresh commands...");
-
-        try {
-            await this.client.application?.commands.set(client.appArray);
-
-            for (const guildId of client.config.guildIds) {
-                const guild = await client.guilds.fetch(guildId).catch(() => null);
-                if (guild) {
-                    await guild.commands.set(client.devArray);
-                    client.logger.info(`API - Commands deployed on: ${guild.name}.`);
-                };
-            };
-
-            client.logger.log("Client - Commands refreshed.");
-        } catch (error) {
-            return client.logger.error(`API - ${error}`);
-        };
+        return console.log(table.toString());
     };
 
     public async loadButtons() {

@@ -77,6 +77,27 @@ export class Base extends Client {
         await this.handlers.loadButtons();
         await this.handlers.loadMenus();
         await this.handlers.loadModals();
+        await this.handlers.loadCommands();
+    };
+
+    public async deployInteractions() {
+        this.logger.warn("API - Attemping to refresh commands...");
+
+        try {
+            await this.application?.commands.set(this.appArray);
+
+            for (const guildId of this.config.guildIds) {
+                const guild = await this.guilds.fetch(guildId).catch(() => null);
+                if (guild) {
+                    await guild.commands.set(this.devArray);
+                    this.logger.info(`API - Commands deployed on: ${guild.name}.`);
+                };
+            };
+
+            this.logger.log("Client - Commands refreshed.");
+        } catch (error) {
+            return this.logger.error(`API - ${error}`);
+        };
     };
 
     public async reload() {
@@ -93,7 +114,7 @@ export class Base extends Client {
             this.devArray = [];
 
             await this.loadHandlers();
-            await this.handlers.loadCommands();
+            await this.deployInteractions();
 
             return this.logger.info("Client - Reload complete.");
         } catch (error) {
