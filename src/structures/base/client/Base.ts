@@ -1,7 +1,7 @@
 import { ApplicationCommandDataResolvable, ApplicationCommandType, Client, Collection, ContextMenuCommandType, GatewayIntentBits, Options, Partials } from "discord.js";
 
 import { Configuration } from "#template/config";
-import { ActionRowType, ClientComponent, Config, ClientCommand } from "#template/types";
+import {  Config, ClientCommand } from "#template/types";
 
 import { Logger } from "#template/utils/Logger.js";
 import { Handlers } from "../handler/Handlers.js";
@@ -15,12 +15,6 @@ export class Base extends Client {
     public commands: {
         interaction: Collection<string, ClientCommand<ApplicationCommandType.ChatInput>>;
         context: Collection<string, ClientCommand<ContextMenuCommandType>>;
-    };
-
-    public components: {
-        buttons: Collection<string, ClientComponent<ActionRowType.Button>>,
-        menus: Collection<string, ClientComponent<ActionRowType.SelectMenu>>,
-        modals: Collection<string, ClientComponent<ActionRowType.Modal>>,
     };
 
     public devArray: ApplicationCommandDataResolvable[];
@@ -63,12 +57,6 @@ export class Base extends Client {
             context: new Collection(),
         };
 
-        this.components = {
-            buttons: new Collection(),
-            menus: new Collection(),
-            modals: new Collection(),
-        };
-
         this.appArray = [];
         this.devArray = [];
 
@@ -83,9 +71,27 @@ export class Base extends Client {
     private async loadHandlers() {
         await this.handlers.loadEvents();
         await this.handlers.loadContext();
-        await this.handlers.loadButtons();
-        await this.handlers.loadMenus();
-        await this.handlers.loadModals();
+        await this.handlers.loadCommands();
+    };
+
+    public async deployInteractions() {
+        this.logger.warn("API - Attemping to refresh commands...");
+
+        try {
+            await this.application?.commands.set(this.appArray);
+
+            for (const guildId of this.config.guildIds) {
+                const guild = await this.guilds.fetch(guildId).catch(() => null);
+                if (guild) {
+                    await guild.commands.set(this.devArray);
+                    this.logger.info(`API - Commands deployed on: ${guild.name}.`);
+                };
+            };
+
+            this.logger.log("Client - Commands refreshed.");
+        } catch (error) {
+            return this.logger.error(`API - ${error}`);
+        };
     };
 
     public async reload() {
@@ -95,15 +101,10 @@ export class Base extends Client {
             this.commands.interaction.clear();
             this.commands.context.clear();
 
-            this.components.buttons.clear();
-            this.components.menus.clear();
-            this.components.modals.clear();
-
             this.appArray = [];
             this.devArray = [];
 
             await this.loadHandlers();
-            await this.handlers.loadCommands();
 
             return this.logger.info("Client - Reload complete.");
         } catch (error) {
