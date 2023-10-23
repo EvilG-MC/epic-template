@@ -12,7 +12,6 @@ interface CommandInteraction {
 export interface BaseCommand<K extends ApplicationCommandType> {
     /**
      * The application command type.
-     * @deprecated
      * @important Don't use this, use `data#type` instead.
      */
     type?: K;
