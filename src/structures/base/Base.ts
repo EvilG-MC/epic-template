@@ -84,7 +84,7 @@ export class Base extends Client {
 	 */
 	private async start() {
 		await this.handler.load();
-		await this.login(this.config.token).catch((error) => this.logger.error(`API - ${error}`));
+		await this.login(process.env.TOKEN).catch((error) => this.logger.error(`API - ${error}`));
 	}
 
 	/**
