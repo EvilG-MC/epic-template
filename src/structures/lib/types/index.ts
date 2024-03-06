@@ -1,6 +1,9 @@
-export { Config } from "./util/Config.js";
-export { ActionRowType, SelectMenuRowType } from "./util/ActionRowType.js";
+export { ClientConfiguration } from "./client/ClientConfiguration.js";
+export { ActionRowType } from "./util/Enums.js";
 
 export { ClientEvent } from "./client/ClientEvent.js";
-export { SlashCommand } from "./commands/SlashCommand.js";
-export { ClientComponent } from "./client/ClientComponent.js";
+export { ClientCommand, CommandInteractions } from "./commands/ClientCommand.js";
+export { ClientComponent, ComponentInteractions } from "./client/ClientComponent.js";
+
+export { CommandOptions } from "./shared/CommandOptions.js";
+export { ComponentOptions } from "./shared/ComponentOptions.js";

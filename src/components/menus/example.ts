@@ -1,15 +1,17 @@
-import { createComponent } from "#template/functions";
+import { Components } from "#template/builders";
 import { ActionRowType } from "#template/types";
 
-export default createComponent({
-    customId: "example-menu",
-    type: ActionRowType.StringMenu,
-    options: {
-        multiple: true,
-    },
-    execute: async (interaction, client) => {
-        const { values } = interaction;
+import type { StringSelectMenuInteraction } from "discord.js";
 
-        await interaction.reply({ content: `example menu! (You selected: ${values[0]})`, ephemeral: true });
-    },
-});
+export default class ExampleMenu extends Components<ActionRowType.SelectMenu> {
+	constructor() {
+		super({
+			customId: "example-menu",
+			type: ActionRowType.SelectMenu,
+		});
+	}
+
+	public override async run(interaction: StringSelectMenuInteraction) {
+		interaction.reply({ content: "example button!", ephemeral: true });
+	}
+}

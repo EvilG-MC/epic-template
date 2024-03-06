@@ -1,4 +1,3 @@
-
 /**
  * @important Needs to be updated together with `package.json`.
  */

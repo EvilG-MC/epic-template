@@ -1,17 +1,23 @@
-import { createEvent } from "#template/functions";
+import { VERSION } from "#template/constants";
+import { Listeners } from "#template/builders";
+import type { Base } from "#template/client";
+
 import { Events } from "discord.js";
 
-import { VERSION } from "#template/constants";
+export default class ReadyEvent extends Listeners<Events.ClientReady> {
+	constructor() {
+		super({
+			name: Events.ClientReady,
+			once: true,
+		});
+	}
 
-export default createEvent({
-    name: Events.ClientReady,
-    once: true,
-    execute: async (client) => {
-        if (!client.user) return;
+	public override async run(client: Base) {
+		if (!client.user) return;
 
-        await client.deployInteractions();
+		await client.deployInteractions();
 
-        client.logger.log(`API - Logged in as: ${client.user.username}.`);
-        client.logger.info(`Client - ${client.user.username} v${VERSION} is now ready.`);
-    },
-});
+		client.logger.log(`API - Logged in as: ${client.user.username}.`);
+		client.logger.log(`Client - ${client.user.username} v${VERSION} is now ready.`);
+	}
+}

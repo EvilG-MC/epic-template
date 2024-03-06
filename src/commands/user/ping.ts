@@ -1,21 +1,28 @@
-import { createCommand } from "#template/functions";
-import { ApplicationCommandType } from "discord.js";
+import { Commands } from "#template/builders";
+import type { Base } from "#template/client";
 
-export default createCommand({
-    data: {
-        type: ApplicationCommandType.ChatInput,
-        name: "ping",
-        description: "Respond with the ping."
-    },
-    options: {
-        toGuild: true,
-    },
-    execute: async (interaction, client) => {
-        const message = await interaction.reply({ content: `\`⌛\` Calculating...`, ephemeral: true, fetchReply: true });
+import { ApplicationCommandType, type ChatInputCommandInteraction } from "discord.js";
 
-        const wsPing = Math.floor(client.ws.ping);
-        const clientPing = Math.floor(message.createdTimestamp - interaction.createdTimestamp);
+export default class PingCommand extends Commands<ApplicationCommandType.ChatInput> {
+	constructor() {
+		super({
+			data: {
+				type: ApplicationCommandType.ChatInput,
+				name: "ping",
+				description: "Respond with the ping.",
+			},
+			options: {
+				toGuild: true,
+			},
+		});
+	}
 
-        await interaction.editReply({ content: `\`🚀\` Pong! (API: \`${wsPing}ms\` - CLIENT: \`${clientPing}ms\`)` });
-    },
-})
+	public override async run(interaction: ChatInputCommandInteraction, client: Base) {
+		const message = await interaction.reply({ content: "`⌛` Calculating...", ephemeral: true, fetchReply: true });
+
+		const wsPing = Math.floor(client.ws.ping);
+		const clientPing = Math.floor(message.createdTimestamp - interaction.createdTimestamp);
+
+		await interaction.editReply({ content: `\`🚀\` Pong! (API: \`${wsPing}ms\` - CLIENT: \`${clientPing}ms\`)` });
+	}
+}

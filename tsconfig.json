@@ -39,8 +39,8 @@
       "#template/types": ["./src/structures/lib/types/index.ts"],
       "#template/config": ["./src/structures/util/data/Configuration.ts"],
       "#template/constants": ["./src/structures/util/data/Contants.ts"],
-      "#template/client": ["./src/structures/base/client/Base.ts"],
-      "#template/functions": ["./src/structures/lib/functions/index.ts"],
+      "#template/client": ["./src/structures/base/Base.ts"],
+      "#template/builders": ["./src/structures/lib/classes/index.ts"],
       "#template/utils/*": ["./src/structures/util/*"],
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
@@ -62,8 +62,8 @@
     // "maxNodeModuleJsDepth": 1,                        /* Specify the maximum folder depth used for checking JavaScript files from 'node_modules'. Only applicable with 'allowJs'. */
 
     /* Emit */
-    "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
-    "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
+    // "declaration": true,                              /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
+    // "declarationMap": true,                           /* Create sourcemaps for d.ts files. */
     // "emitDeclarationOnly": true,                      /* Only output d.ts files and not JavaScript files. */
     // "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */
     // "inlineSourceMap": true,                          /* Include sourcemap files inside the emitted JavaScript. */
@@ -118,5 +118,7 @@
     /* Completeness */
     "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+  },
+  "exclude": ["dist", "node_modules"],
+  "include": ["src"]
 }
