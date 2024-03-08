@@ -1,8 +1,6 @@
 import chalk from "chalk";
 
 export class Logger {
-	constructor() {}
-
 	private setPadding(label: string) {
 		const maxLength = 6;
 		const bar = "-";

@@ -6,7 +6,7 @@ export const Configuration: ClientConfiguration = {
 		"OTHER-ID",
 	],
 	guildIds: [
-		"123", // <-- Example guild,
+		"123", // <-- Example Id
 		"OTHER-ID",
 	],
 };
