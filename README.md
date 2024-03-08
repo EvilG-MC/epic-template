@@ -34,12 +34,12 @@ npm run start
 
 
 ### 🎲 Contributions
-> You can [contribute](https://github.com/EvilG-MC/epic-template/blob/main/docs/CONTRIBUTING.md) if you want.
+> You can [contribute](https://github.com/EvilG-MC/epic-template/blob/v2/docs/CONTRIBUTING.md) if you want.
 
 ### 📜 Credits
-> You can found the [credits](https://github.com/EvilG-MC/epic-template/blob/main/docs/CREDITS.md) for the people who have already contributed to this project.
+> You can found the [credits](https://github.com/EvilG-MC/epic-template/blob/v2/docs/CREDITS.md) for the people who have already contributed to this project.
 
 ### 🚀 Features
 
 > To avoid saturating this thing, I made a new file where all the features created in this template will be uploaded.
-> So, [click here](https://github.com/EvilG-MC/epic-template/blob/main/docs/FEATURES.md) to see them.
+> So, [click here](https://github.com/EvilG-MC/epic-template/blob/v2/docs/FEATURES.md) to see them.
