@@ -1,14 +1,11 @@
-import {
-	type ApplicationCommandData,
-	type ApplicationCommandType,
-	AutocompleteInteraction,
-	Awaitable,
-	type ChatInputCommandInteraction,
-	type MessageContextMenuCommandInteraction,
-	type UserContextMenuCommandInteraction,
+import type {
+	ApplicationCommandData,
+	ApplicationCommandType,
+	ChatInputCommandInteraction,
+	MessageContextMenuCommandInteraction,
+	UserContextMenuCommandInteraction,
 } from "discord.js";
 import type { CommandOptions } from "#template/types";
-import { Base } from "dist/structures/base/Base.ts";
 
 export interface CommandInteractions {
 	1: ChatInputCommandInteraction;

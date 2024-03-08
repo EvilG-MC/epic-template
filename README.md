@@ -11,7 +11,7 @@ This repo uses the: [MIT](LICENSE.md) license.
 git clone https://github.com/EvilG-MC/epic-template.git
 ```
 <bt></br>
-**2**. Install dependencies (I use [pnpm](https://pnpm.io/installation)): 
+**2**. Install dependencies (I recommend: [pnpm](https://pnpm.io/installation)): 
 ```bash
 npm install
 ```

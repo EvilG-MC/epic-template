@@ -1,5 +1,4 @@
-import { Awaitable, type ClientEvents } from "discord.js";
-import { Base } from "dist/structures/base/Base.ts";
+import type { ClientEvents } from "discord.js";
 
 export interface ClientEvent<K extends keyof ClientEvents> {
 	/** The event name. */

@@ -1,14 +1,4 @@
-import {
-	Awaitable,
-	type ButtonInteraction,
-	type ModalSubmitInteraction,
-	StringSelectMenuInteraction,
-	UserSelectMenuInteraction,
-	RoleSelectMenuInteraction,
-	ChannelSelectMenuInteraction,
-	type AnySelectMenuInteraction,
-} from "discord.js";
-import { Base } from "dist/structures/base/Base.ts";
+import type { ButtonInteraction, ModalSubmitInteraction, AnySelectMenuInteraction } from "discord.js";
 
 import type { ActionRowType } from "../util/Enums.ts";
 import type { ComponentOptions } from "../shared/ComponentOptions.ts";

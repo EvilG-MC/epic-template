@@ -4,4 +4,4 @@
 
 Branch | Sender | Emoji | Note | Link
 --- | --- | --- | --- | ---
-`feat/context` | JustEvil | 🐐 | Badly created. (But I did my best) | [Link](https://github.com/EvilG-MC/epic-template/tree/feat/context)
+`---` | --- | 🐐 | --- | ---

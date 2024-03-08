@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
+	"$schema": "https://biomejs.dev/schemas/1.6.0/schema.json",
 	"organizeImports": {
 		"enabled": false
 	},
@@ -22,9 +22,7 @@
 				"noUselessConstructor": "off"
 			},
 			"nursery": {
-				"useImportType": "error",
-				"noUselessTernary": "error",
-				"noEmptyBlockStatements": "off"
+				"noUselessTernary": "error"
 			}
 		}
 	},
