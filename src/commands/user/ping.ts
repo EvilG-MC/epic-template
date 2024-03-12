@@ -12,7 +12,7 @@ export default class PingCommand extends Commands<ApplicationCommandType.ChatInp
 				description: "Respond with the ping.",
 			},
 			options: {
-				toGuild: true,
+				toGuild: false,
 			},
 		});
 	}

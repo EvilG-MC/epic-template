@@ -7,7 +7,6 @@ export default class InteractionCreate extends Listeners<Events.InteractionCreat
 	constructor() {
 		super({
 			name: Events.InteractionCreate,
-			once: true,
 		});
 	}
 
