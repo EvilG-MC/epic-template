@@ -4,7 +4,13 @@
 
 This repo uses the: [MIT](LICENSE.md) license.
 
+> [!IMPORTANT]
+> This will probably be the last update that does this.... I'm moving away from discord.js and starting to use [Seyfert](https://github.com/tiramisulabs/seyfert), a new library.
+
 ### 🚀 Installation 
+
+> Pre-requisites
+- [NodeJS] v20.12.x
 
 **1**. Clone the repo: 
 ```bash

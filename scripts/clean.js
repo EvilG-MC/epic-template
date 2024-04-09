@@ -1,28 +1,19 @@
 //@ts-check
 
+import { exec } from "node:child_process";
 import { rm } from "node:fs/promises";
+import { promisify } from "node:util";
 import { existsSync } from "node:fs";
 import { resolve } from "node:path";
-import { exec } from "node:child_process";
 
-/**
- * 
- * @param {string} command 
- * @returns {Promise<string>}
- */
-const execSync = (command) => {
-    return new Promise((res, rej) => {
-        exec(command, (error, stdout) => {
-            if (error) return rej(error);
-            return res(stdout);
-        });
-    });
-};
+import chalk from "chalk";
+
+const execSync = promisify(exec);
 
 (async () => {
-    console.log("Attemping to compile...");
-    
-    const timeStart = Date.now();
+    console.info("Attemping to compile...");
+
+    const timeStart = performance.now();
 
     try {
         const path = resolve("dist");
@@ -32,8 +23,10 @@ const execSync = (command) => {
 
         await execSync("npm run compile");
 
-        console.log(`Done! Compiled at: ${Date.now() - timeStart}ms`);
+        console.info(`Done! Compiled at: ${performance.now() - timeStart}ms`);
     } catch (error) {
-        console.log(`Error! Compilation error: ${error}`);
+        console.info("Error! Compilation error!\n")
+        console.info(chalk.red(error.stdout));
+        process.exit(1);
     };
 })();

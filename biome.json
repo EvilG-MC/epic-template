@@ -1,7 +1,7 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.6.1/schema.json",
+	"$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
 	"organizeImports": {
-		"enabled": false
+		"enabled": true
 	},
 	"linter": {
 		"enabled": true,
@@ -9,29 +9,49 @@
 			"all": true,
 			"suspicious": {
 				"noExplicitAny": "off",
-				"noConfusingVoidType": "off"
+				"noConfusingVoidType": "off",
+				"noGlobalIsFinite": "off",
+				"noGlobalIsNan": "off",
+				"noEmptyBlockStatements": "off"
 			},
 			"style": {
 				"noNonNullAssertion": "off",
 				"noParameterAssign": "off",
-				"noInferrableTypes": "off"
+				"noInferrableTypes": "off",
+				"useNumberNamespace": "off",
+				"noDefaultExport": "off",
+				"useBlockStatements": "off",
+				"useFilenamingConvention": "off",
+				"useNamingConvention": "off",
+				"useSingleCaseStatement": "off"
 			},
 			"complexity": {
 				"noBannedTypes": "off",
 				"noForEach": "off",
-				"noUselessConstructor": "off"
+				"noExcessiveCognitiveComplexity": {
+					"level": "warn",
+					"options": {
+						"maxAllowedComplexity": 35
+					}
+				}
 			},
 			"nursery": {
 				"noUselessTernary": "error"
+			},
+			"correctness": {
+				"noVoidTypeReturn": "off"
+			},
+			"security": {
+				"noGlobalEval": "off"
 			}
 		}
 	},
 	"files": {
 		"ignoreUnknown": true,
 		"ignore": [
+			".vscode",
 			"node_modules",
-			"dist",
-			"src/env.d.ts"
+			"dist"
 		]
 	},
 	"json": {
@@ -44,7 +64,7 @@
 	"formatter": {
 		"enabled": true,
 		"indentWidth": 4,
-		"indentStyle": "tab",
+		"indentStyle": "space",
 		"lineWidth": 140,
 		"lineEnding": "crlf",
 		"formatWithErrors": true

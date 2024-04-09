@@ -1,4 +1,8 @@
+import { readFile } from "node:fs/promises";
+
+const packageJSON = JSON.parse(await readFile("./package.json", "utf-8"));
+
 /**
- * @important Needs to be updated together with `package.json`.
+ * @important Get the version from the `package.json`.
  */
-export const VERSION = "1.0.0";
+export const VERSION: string = packageJSON.version;

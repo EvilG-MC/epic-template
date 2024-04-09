@@ -41,7 +41,8 @@
       "#template/constants": ["./src/structures/util/data/Contants.ts"],
       "#template/client": ["./src/structures/base/Base.ts"],
       "#template/builders": ["./src/structures/lib/classes/index.ts"],
-      "#template/utils/*": ["./src/structures/util/*"],
+      "#template/listeners": ["./src/structures/lib/listeners/index.ts"],
+      "#template/utils/*": ["./src/structures/util/*"]
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
