@@ -6,6 +6,8 @@ This repo uses the: [MIT](LICENSE.md) license.
 
 > [!IMPORTANT]
 > This will probably be the last update that does this.... I'm moving away from discord.js and starting to use [Seyfert](https://github.com/tiramisulabs/seyfert), a new library.
+>
+> So be free to modify/take whatever you want, I really wouldn't mind.
 
 ### 🚀 Installation 
 
