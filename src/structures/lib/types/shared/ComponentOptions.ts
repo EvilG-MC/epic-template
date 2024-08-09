@@ -1,4 +1,4 @@
-import type { ActionRowType, SelectMenuRowType } from "../util/Enums.ts";
+import type { ActionRowType } from "../util/Enums.js";
 
 export interface BaseOptions {
     /** The component only can be executed by the developer(s). */
@@ -14,4 +14,6 @@ export interface BaseOptions {
     value?: string;
 }
 
-export type ComponentOptions<K extends ActionRowType> = K extends SelectMenuRowType ? BaseOptions : Omit<BaseOptions, "multiple" | "value">;
+export type ComponentOptions<K extends ActionRowType> = K extends ActionRowType.SelectMenu
+    ? BaseOptions
+    : Omit<BaseOptions, "multiple" | "value">;

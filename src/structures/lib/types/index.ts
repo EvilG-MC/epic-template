@@ -1,9 +1,10 @@
-export { ClientConfiguration } from "./client/ClientConfiguration.js";
+export type { ClientConfiguration } from "./client/ClientConfiguration.js";
 export { ActionRowType } from "./util/Enums.js";
 
-export { ClientEvent } from "./client/ClientEvent.js";
-export { ClientCommand, CommandInteractions } from "./commands/ClientCommand.js";
-export { ClientComponent, ComponentInteractions } from "./client/ClientComponent.js";
+export type { ClientEvent, ClientEventRun } from "./client/ClientEvent.js";
+export type { ClientCommand, ClientCommandAutocomplete, ClientCommandRun } from "./client/ClientCommand.js";
+export type { ClientComponent, ClientComponentRun } from "./client/ClientComponent.js";
+export type { ClientHandler, ClientHandlerRun } from "./client/ClientHandler.js";
 
-export { CommandOptions } from "./shared/CommandOptions.js";
-export { ComponentOptions } from "./shared/ComponentOptions.js";
+export type { CommandOptions } from "./shared/CommandOptions.js";
+export type { ComponentOptions } from "./shared/ComponentOptions.js";

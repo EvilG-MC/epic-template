@@ -1,32 +1,24 @@
-import { Commands } from "#template/builders";
-import type { Base } from "#template/client";
+import { ApplicationCommandType, PermissionsBitField } from "discord.js";
+import { Command } from "#template/builders";
 
-import { ApplicationCommandType, type ChatInputCommandInteraction, PermissionsBitField } from "discord.js";
-
-export default class ReloadCommand extends Commands<ApplicationCommandType.ChatInput> {
-    constructor() {
-        super({
-            data: {
-                type: ApplicationCommandType.ChatInput,
-                name: "reload",
-                description: "Reload this epic bot.",
-                dmPermission: false,
-                defaultMemberPermissions: PermissionsBitField.Flags.Administrator,
-            },
-            options: {
-                toGuild: true,
-                onlyDeveloper: true,
-                onlyOwner: true,
-            },
-        });
-    }
-
-    public override async run(interaction: ChatInputCommandInteraction, client: Base) {
+export default new Command({
+    data: {
+        type: ApplicationCommandType.ChatInput,
+        name: "reload",
+        description: "Reload this epic bot.",
+        dmPermission: false,
+        defaultMemberPermissions: PermissionsBitField.Flags.Administrator,
+    },
+    options: {
+        toGuild: true,
+        onlyDeveloper: true,
+        onlyOwner: true,
+    },
+    run: async (interaction, client) => {
         await interaction.deferReply({ ephemeral: true });
-
         await client
             .reload()
             .then(() => interaction.editReply({ content: "`✅` - The bot has been reloaded." }))
             .catch(() => interaction.editReply({ content: "`❌` - An error ocurred in the reload." }));
-    }
-}
+    },
+});

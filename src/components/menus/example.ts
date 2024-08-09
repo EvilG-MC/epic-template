@@ -1,17 +1,13 @@
-import { Components } from "#template/builders";
+import { Component } from "#template/builders";
 import { ActionRowType } from "#template/types";
 
-import type { StringSelectMenuInteraction } from "discord.js";
+export default new Component({
+    customId: "example-menu",
+    type: ActionRowType.SelectMenu,
+    run: async (interaction) => {
+        //you can change the type of the menu!
+        if (!interaction.isStringSelectMenu()) return;
 
-export default class ExampleMenu extends Components<ActionRowType.SelectMenu> {
-    constructor() {
-        super({
-            customId: "example-menu",
-            type: ActionRowType.SelectMenu,
-        });
-    }
-
-    public override async run(interaction: StringSelectMenuInteraction) {
         await interaction.reply({ content: "example menu!", ephemeral: true });
-    }
-}
+    },
+});

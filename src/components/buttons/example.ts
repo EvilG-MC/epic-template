@@ -1,17 +1,10 @@
-import { Components } from "#template/builders";
+import { Component } from "#template/builders";
 import { ActionRowType } from "#template/types";
 
-import type { ButtonInteraction } from "discord.js";
-
-export default class ExampleButton extends Components<ActionRowType.Button> {
-    constructor() {
-        super({
-            customId: "example-button",
-            type: ActionRowType.Button,
-        });
-    }
-
-    public override async run(interaction: ButtonInteraction) {
+export default new Component({
+    customId: "example-button",
+    type: ActionRowType.Button,
+    run: async (interaction) => {
         await interaction.reply({ content: "example button!", ephemeral: true });
-    }
-}
+    },
+});

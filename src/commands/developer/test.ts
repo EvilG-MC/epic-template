@@ -1,32 +1,21 @@
-import { Commands } from "#template/builders";
+import { Command } from "#template/builders";
 
-import {
-    ActionRowBuilder,
-    ApplicationCommandType,
-    type ChatInputCommandInteraction,
-    PermissionsBitField,
-    StringSelectMenuBuilder,
-} from "discord.js";
+import { ActionRowBuilder, ApplicationCommandType, PermissionsBitField, StringSelectMenuBuilder } from "discord.js";
 
-export default class TestCommand extends Commands<ApplicationCommandType.ChatInput> {
-    constructor() {
-        super({
-            data: {
-                type: ApplicationCommandType.ChatInput,
-                name: "test",
-                description: "A test command.",
-                dmPermission: false,
-                defaultMemberPermissions: PermissionsBitField.Flags.Administrator,
-            },
-            options: {
-                onlyDeveloper: true,
-                onlyOwner: true,
-                toGuild: true,
-            },
-        });
-    }
-
-    public override async run(interaction: ChatInputCommandInteraction) {
+export default new Command({
+    data: {
+        type: ApplicationCommandType.ChatInput,
+        name: "test",
+        description: "A test command.",
+        dmPermission: false,
+        defaultMemberPermissions: PermissionsBitField.Flags.Administrator,
+    },
+    options: {
+        onlyDeveloper: true,
+        onlyOwner: true,
+        toGuild: true,
+    },
+    run: async (interaction) => {
         const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
             new StringSelectMenuBuilder().setCustomId("example-menu").setPlaceholder("Test menu").addOptions({
                 value: "example-value",
@@ -36,5 +25,5 @@ export default class TestCommand extends Commands<ApplicationCommandType.ChatInp
         );
 
         await interaction.reply({ components: [row] });
-    }
-}
+    },
+});

@@ -1,4 +1,4 @@
-import { type Components, Handlers } from "#template/builders";
+import { type Component, Handlers } from "#template/builders";
 import type { Base } from "#template/client";
 import type { ActionRowType } from "#template/types";
 
@@ -17,8 +17,7 @@ export default class Rows extends Handlers {
 
         await Promise.all(
             files.map(async (file) => {
-                const Component = await this.import(file);
-                const component: Components<ActionRowType> = new Component();
+                const component = await this.import<Component<ActionRowType>>(file);
 
                 if (!component) return table.addRow("Missing", "Missing component.");
                 if (!component.customId) return table.addRow("Missing", "Missing component customId.");

@@ -1,17 +1,10 @@
-import { Components } from "#template/builders";
+import { Component } from "#template/builders";
 import { ActionRowType } from "#template/types";
 
-import type { ModalSubmitInteraction } from "discord.js";
-
-export default class ExampleModal extends Components<ActionRowType.Modal> {
-    constructor() {
-        super({
-            customId: "example-modal",
-            type: ActionRowType.Modal,
-        });
-    }
-
-    public override async run(interaction: ModalSubmitInteraction) {
+export default new Component({
+    customId: "example-modal",
+    type: ActionRowType.Modal,
+    run: async (interaction) => {
         await interaction.reply({ content: "example modal!", ephemeral: true });
-    }
-}
+    },
+});

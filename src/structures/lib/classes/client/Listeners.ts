@@ -1,12 +1,12 @@
-import type { Awaitable, ClientEvents } from "discord.js";
-import type { Base } from "#template/client";
-import type { ClientEvent } from "#template/types";
+import type { ClientEvents } from "discord.js";
+import type { ClientEvent, ClientEventRun } from "#template/types";
 
-export abstract class Listeners<K extends keyof ClientEvents> implements ClientEvent<K> {
+export class Listener<K extends keyof ClientEvents> implements ClientEvent<K> {
     readonly name: K;
+    readonly run: ClientEventRun<K>;
+
     readonly disabled?: boolean;
     readonly once?: boolean;
-
     /**
      *
      * Create a new event.
@@ -16,13 +16,6 @@ export abstract class Listeners<K extends keyof ClientEvents> implements ClientE
         this.name = event.name;
         this.disabled = event.disabled;
         this.once = event.once;
+        this.run = event.run;
     }
-
-    /**
-     *
-     * The event run callback.
-     * @param client
-     * @param args
-     */
-    public abstract run(client: Base, ...args: ClientEvents[K]): Awaitable<any>;
 }

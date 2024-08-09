@@ -1,5 +1,5 @@
 import type { ApplicationCommandType } from "discord.js";
-import { type Commands, Handlers } from "#template/builders";
+import { type Command, Handlers } from "#template/builders";
 import type { Base } from "#template/client";
 
 const commandTypes: Record<ApplicationCommandType, string> = {
@@ -17,8 +17,7 @@ export default class Interactions extends Handlers {
 
         await Promise.all(
             files.map(async (file) => {
-                const Command = await this.import(file);
-                const command: Commands<ApplicationCommandType> = new Command();
+                const command = await this.import<Command<ApplicationCommandType>>(file);
 
                 if (!command) return table.addRow("Missing", "Missing command.");
                 if (!command.data) return table.addRow("Missing", "Missing command data.");

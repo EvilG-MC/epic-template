@@ -1,4 +1,4 @@
-import { Handlers, type Listeners } from "#template/builders";
+import { Handlers, type Listener } from "#template/builders";
 import type { Base } from "#template/client";
 
 import type { ClientEvents } from "discord.js";
@@ -14,8 +14,7 @@ export default class Events extends Handlers {
 
         await Promise.all(
             files.map(async (file) => {
-                const Event = await this.import(file);
-                const event: Listeners<keyof ClientEvents> = new Event();
+                const event = await this.import<Listener<keyof ClientEvents>>(file);
 
                 if (!event) return table.addRow("Missing", "Missing event.");
                 if (!event.name) return table.addRow("Missing", "Missing event name.");

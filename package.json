@@ -1,51 +1,52 @@
 {
-  "name": "bot-template",
-  "version": "0.2.1",
-  "description": "A shitty discord bot template.",
-  "main": "./dist/index.js",
-  "type": "module",
-  "keywords": [],
-  "author": "JustEvil",
-  "license": "MIT",
-  "homepage": "https://github.com/EvilG-MC/epic-template#readme",
-  "engines": {
-    "node": ">=20.12.0"
-  },
-  "directories": {
-    "doc": "docs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/EvilG-MC/epic-template.git"
-  },
-  "bugs": {
-    "url": "https://github.com/EvilG-MC/epic-template/issues"
-  },
-  "scripts": {
-    "compile": "tsc",
-    "start": "node ./dist/index.js",
-    "clean": "node ./scripts/clean.js",
-    "test": "npm run clean && npm run start",
-    "lint": "biome lint --apply ./src",
-    "format": "biome check --apply ./src"
-  },
-  "imports": {
-    "#template/types": "./dist/structures/lib/types/index.js",
-    "#template/config": "./dist/structures/util/data/Configuration.js",
-    "#template/constants": "./dist/structures/util/data/Contants.js",
-    "#template/client": "./dist/structures/base/Base.js",
-    "#template/builders": "./dist/structures/lib/classes/index.js",
-    "#template/listeners": "./dist/structures/lib/listeners/index.js",
-    "#template/utils/*": "./dist/structures/util/*"
-  },
-  "dependencies": {
-    "ascii-table3": "^0.9.0",
-    "chalk": "^5.3.0",
-    "discord.js": "^14.14.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.6.4",
-    "@types/node": "^20.12.6",
-    "typescript": "^5.4.4"
-  }
+    "name": "bot-template",
+    "version": "0.2.1",
+    "description": "A shitty discord bot template.",
+    "main": "./dist/index.js",
+    "type": "module",
+    "keywords": [],
+    "author": "JustEvil",
+    "license": "MIT",
+    "homepage": "https://github.com/EvilG-MC/epic-template#readme",
+    "engines": {
+        "node": ">=20.12.0"
+    },
+    "directories": {
+        "doc": "docs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/EvilG-MC/epic-template.git"
+    },
+    "bugs": {
+        "url": "https://github.com/EvilG-MC/epic-template/issues"
+    },
+    "scripts": {
+        "compile": "tsup",
+        "start": "node ./dist/index.js",
+        "dev": "tsx watch ./src/index.ts",
+        "lint": "biome lint ./src",
+        "format": "biome format --write ."
+    },
+    "imports": {
+        "#template/types": "./dist/structures/lib/types/index.js",
+        "#template/config": "./dist/structures/util/data/Configuration.js",
+        "#template/constants": "./dist/structures/util/data/Contants.js",
+        "#template/client": "./dist/structures/base/Base.js",
+        "#template/builders": "./dist/structures/lib/classes/index.js",
+        "#template/listeners": "./dist/structures/lib/listeners/index.js",
+        "#template/utils/*": "./dist/structures/util/*"
+    },
+    "dependencies": {
+        "ascii-table3": "^0.9.0",
+        "chalk": "^5.3.0",
+        "discord.js": "^14.15.3",
+        "dotenv": "^16.4.5",
+        "glob": "^11.0.0"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^1.8.3",
+        "@types/node": "^22.1.0",
+        "typescript": "^5.5.4"
+    }
 }

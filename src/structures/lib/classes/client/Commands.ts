@@ -1,10 +1,12 @@
-import { type ApplicationCommandData, ApplicationCommandType, type AutocompleteInteraction, type Awaitable } from "discord.js";
-import type { Base } from "#template/client";
-import type { ClientCommand, CommandInteractions, CommandOptions } from "#template/types";
+import { type ApplicationCommandData, ApplicationCommandType } from "discord.js";
+import type { ClientCommand, ClientCommandAutocomplete, ClientCommandRun, CommandOptions } from "#template/types";
 
-export abstract class Commands<K extends ApplicationCommandType> implements ClientCommand<K> {
+export class Command<K extends ApplicationCommandType> implements ClientCommand<K> {
     readonly data: ApplicationCommandData & { type: K };
+    readonly run: ClientCommandRun<K>;
+
     readonly options?: CommandOptions;
+    readonly autocomplete?: ClientCommandAutocomplete;
 
     /**
      *
@@ -14,23 +16,9 @@ export abstract class Commands<K extends ApplicationCommandType> implements Clie
     constructor(command: ClientCommand<K>) {
         this.data = command.data;
         this.options = command.options;
+        this.run = command.run;
+        this.autocomplete = this.autocomplete;
     }
-
-    /**
-     *
-     * The command run callback.
-     * @param interaction
-     * @param client
-     */
-    public abstract run(interaction: CommandInteractions[K], client: Base): Awaitable<any>;
-
-    /**
-     *
-     * The command autocomplete callback.
-     * @param interaction
-     * @param client
-     */
-    public autocomplete?(interaction: AutocompleteInteraction, client: Base): Awaitable<any>;
 
     /**
      *
@@ -60,6 +48,6 @@ export abstract class Commands<K extends ApplicationCommandType> implements Clie
     }
 }
 
-type SlashCommand = Commands<ApplicationCommandType.ChatInput>;
-type MessageCommand = Commands<ApplicationCommandType.Message>;
-type UserCommand = Commands<ApplicationCommandType.User>;
+type SlashCommand = Command<ApplicationCommandType.ChatInput>;
+type MessageCommand = Command<ApplicationCommandType.Message>;
+type UserCommand = Command<ApplicationCommandType.User>;

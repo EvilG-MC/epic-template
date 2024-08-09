@@ -9,7 +9,7 @@ import {
     Partials,
 } from "discord.js";
 
-import type { Commands, Components } from "#template/builders";
+import type { Command, Component } from "#template/builders";
 import { Configuration } from "#template/config";
 import type { ActionRowType, ClientConfiguration } from "#template/types";
 
@@ -23,13 +23,13 @@ export class Base extends Client {
     public handler: Handler;
 
     public commands: {
-        interaction: Collection<string, Commands<ApplicationCommandType.ChatInput>>;
-        context: Collection<string, Commands<ContextMenuCommandType>>;
+        interaction: Collection<string, Command<ApplicationCommandType.ChatInput>>;
+        context: Collection<string, Command<ContextMenuCommandType>>;
     };
     public components: {
-        buttons: Collection<string, Components<ActionRowType.Button>>;
-        menus: Collection<string, Components<ActionRowType.SelectMenu>>;
-        modals: Collection<string, Components<ActionRowType.Modal>>;
+        buttons: Collection<string, Component<ActionRowType.Button>>;
+        menus: Collection<string, Component<ActionRowType.SelectMenu>>;
+        modals: Collection<string, Component<ActionRowType.Modal>>;
     };
 
     public devArray: ApplicationCommandDataResolvable[];

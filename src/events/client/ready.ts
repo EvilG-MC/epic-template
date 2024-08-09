@@ -1,23 +1,17 @@
-import { Listeners } from "#template/builders";
-import type { Base } from "#template/client";
+import { Listener } from "#template/builders";
 import { VERSION } from "#template/constants";
 
 import { Events } from "discord.js";
 
-export default class ReadyEvent extends Listeners<Events.ClientReady> {
-    constructor() {
-        super({
-            name: Events.ClientReady,
-            once: true,
-        });
-    }
-
-    public override async run(client: Base) {
+export default new Listener({
+    name: Events.ClientReady,
+    once: true,
+    run: async (client) => {
         if (!client.user) return;
 
         await client.deployInteractions();
 
         client.logger.log(`API - Logged in as: ${client.user.username}.`);
         client.logger.log(`Client - ${client.user.username} v${VERSION} is now ready.`);
-    }
-}
+    },
+});

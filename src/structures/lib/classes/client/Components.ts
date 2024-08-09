@@ -1,10 +1,10 @@
-import type { Awaitable } from "discord.js";
-import type { Base } from "#template/client";
-import { ActionRowType, type ClientComponent, type ComponentInteractions, type ComponentOptions } from "#template/types";
+import { ActionRowType, type ClientComponent, type ClientComponentRun, type ComponentOptions } from "#template/types";
 
-export abstract class Components<K extends ActionRowType> implements ClientComponent<K> {
+export class Component<K extends ActionRowType> implements ClientComponent<K> {
     readonly type: K;
     readonly customId: string;
+    readonly run: ClientComponentRun<K>;
+
     readonly options?: ComponentOptions<K>;
 
     /**
@@ -16,15 +16,8 @@ export abstract class Components<K extends ActionRowType> implements ClientCompo
         this.customId = component.customId;
         this.type = component.type;
         this.options = component.options;
+        this.run = component.run;
     }
-
-    /**
-     *
-     * The component run callback.
-     * @param interaction
-     * @param client
-     */
-    public abstract run(interaction: ComponentInteractions[K], client: Base): Awaitable<any>;
 
     /**
      *
@@ -54,6 +47,6 @@ export abstract class Components<K extends ActionRowType> implements ClientCompo
     }
 }
 
-type ButtonComponent = Components<ActionRowType.Button>;
-type ModalComponent = Components<ActionRowType.Modal>;
-type MenuComponent = Components<ActionRowType.SelectMenu>;
+type ButtonComponent = Component<ActionRowType.Button>;
+type ModalComponent = Component<ActionRowType.Modal>;
+type MenuComponent = Component<ActionRowType.SelectMenu>;

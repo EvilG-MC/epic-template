@@ -1,4 +1,4 @@
-export { Commands } from "./client/Commands.js";
-export { Listeners } from "./client/Listeners.js";
+export { Command } from "./client/Commands.js";
+export { Listener } from "./client/Listeners.js";
+export { Component } from "./client/Components.js";
 export { Handlers } from "./client/Handlers.js";
-export { Components } from "./client/Components.js";
