@@ -27,9 +27,10 @@ npm install
 **3**. Compile the bot: 
 * Because it is a typescript bot running in javascript.
 ```bash
+#Traspile the bot to Javascript
 npm run compile 
 
-#or you can run it directly using typescript!
+#Or you can run it directly using typescript!
 npm run dev
 ```
 <bt></br>
