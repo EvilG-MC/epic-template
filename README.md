@@ -29,8 +29,7 @@ npm install
 ```bash
 npm run compile 
 
-#or you can run it using typescript!
-
+#or you can run it directly using typescript!
 npm run dev
 ```
 <bt></br>
