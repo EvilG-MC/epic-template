@@ -28,6 +28,10 @@ npm install
 * Because it is a typescript bot running in javascript.
 ```bash
 npm run compile 
+
+#or you can run it using typescript!
+
+npm run dev
 ```
 <bt></br>
 **4**. Start the bot: 
