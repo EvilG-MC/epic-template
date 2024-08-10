@@ -4,8 +4,9 @@ import { ActionRowBuilder, ApplicationCommandType, PermissionsBitField, StringSe
 
 export default new Command({
     data: {
-        type: ApplicationCommandType.Message,
+        type: ApplicationCommandType.ChatInput,
         name: "test",
+        description: "A test command.",
         dmPermission: false,
         defaultMemberPermissions: PermissionsBitField.Flags.Administrator,
     },
@@ -14,7 +15,6 @@ export default new Command({
         onlyOwner: true,
         toGuild: true,
     },
-    autocomplete: () => {},
     run: async (interaction) => {
         const row = new ActionRowBuilder<StringSelectMenuBuilder>().addComponents(
             new StringSelectMenuBuilder().setCustomId("example-menu").setPlaceholder("Test menu").addOptions({
