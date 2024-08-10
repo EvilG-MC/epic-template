@@ -23,9 +23,9 @@ export default class Interactions extends Handlers {
                 if (!command.data) return table.addRow("Missing", "Missing command data.");
                 if (!command.data.name) return table.addRow("Missing", "Missing command name.");
 
-                if (command.isUserCommand() || command.isMessageCommand() && command.autocomplete) return table.addRow(command.data.name, "Context cannot have autocomplete.")
+                if (command.isUserCommand() || command.isMessageCommand() && command.autocomplete) return table.addRow(command.data.name, "Context cannot have autocomplete.", commandTypes[command.data.type])
 
-                if (command.options?.disabled) return table.addRow(command.data.name, "Disabled.");
+                if (command.options?.disabled) return table.addRow(command.data.name, "Disabled.", commandTypes[command.data.type]);
 
                 if (command.options?.toGuild) client.devArray.push(command.data);
                 else client.appArray.push(command.data);
