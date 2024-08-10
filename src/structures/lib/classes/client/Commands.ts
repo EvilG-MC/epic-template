@@ -17,7 +17,7 @@ export class Command<K extends ApplicationCommandType> implements ClientCommand<
         this.data = command.data;
         this.options = command.options;
         this.run = command.run;
-        this.autocomplete = this.autocomplete;
+        this.autocomplete = command.autocomplete;
     }
 
     /**
