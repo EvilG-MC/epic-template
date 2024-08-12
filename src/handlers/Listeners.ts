@@ -23,7 +23,7 @@ export default class Events extends Handlers {
 
                 const execute = (...args: []) => event.run(client, ...args);
 
-                if (event.once) client.once(event.name, execute);
+                if (event.isOnce()) client.once(event.name, execute);
                 else client.on(event.name, execute);
 
                 table.addRow(event.name, "Loaded.");

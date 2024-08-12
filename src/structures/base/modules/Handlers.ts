@@ -26,7 +26,7 @@ export class Handler extends Handlers {
                 const handler: Handlers = new Handler();
 
                 if (!(handler instanceof Handlers)) return;
-                if (!handler) table.addRow("Missing", "Missing handler.");
+                if (!handler) return table.addRow("Missing", "Missing handler.");
 
                 await handler.load(client);
 

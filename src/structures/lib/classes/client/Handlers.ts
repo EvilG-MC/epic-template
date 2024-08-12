@@ -40,5 +40,5 @@ export abstract class Handlers {
      * The bot will execute this method.
      * When the handler is loaded.
      */
-    public abstract load(client: Base): Awaitable<void>;
+    public abstract load(client: Base): Awaitable<any>;
 }

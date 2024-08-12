@@ -25,7 +25,7 @@ export class Command<K extends ApplicationCommandType> implements ClientCommand<
      * Check if the command is a `slash command`.
      * @returns
      */
-    public isSlashCommand(): this is SlashCommand {
+    public isSlash(): this is SlashCommand {
         return this.data.type === ApplicationCommandType.ChatInput;
     }
 
@@ -34,7 +34,7 @@ export class Command<K extends ApplicationCommandType> implements ClientCommand<
      * Check if the command is a `message context command`.
      * @returns
      */
-    public isMessageCommand(): this is MessageCommand {
+    public isMessage(): this is MessageCommand {
         return this.data.type === ApplicationCommandType.Message;
     }
 
@@ -43,7 +43,7 @@ export class Command<K extends ApplicationCommandType> implements ClientCommand<
      * Check if the command is a `user context command`.
      * @returns
      */
-    public isUserCommand(): this is UserCommand {
+    public isUser(): this is UserCommand {
         return this.data.type === ApplicationCommandType.User;
     }
 }
