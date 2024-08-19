@@ -18,13 +18,4 @@ export class Listener<K extends keyof ClientEvents> implements ClientEvent<K> {
         this.once = event.once;
         this.run = event.run;
     }
-
-    /**
-     * 
-     * Return if the event only will be executed once.
-     * @returns 
-     */
-    public isOnce(): boolean {
-        return !!this.once;
-    }
 }

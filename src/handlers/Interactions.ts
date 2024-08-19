@@ -1,11 +1,11 @@
-import type { ApplicationCommandType } from "discord.js";
+import { ApplicationCommandType } from "discord.js";
 import { type Command, Handlers } from "#template/builders";
 import type { Base } from "#template/client";
 
 const commandTypes: Record<ApplicationCommandType, string> = {
-    "1": "Slash",
-    "2": "User Context",
-    "3": "Message Context",
+    [ApplicationCommandType.ChatInput]: "Slash",
+    [ApplicationCommandType.User]: "User Context",
+    [ApplicationCommandType.Message]: "Message Context",
 };
 
 export default class Interactions extends Handlers {

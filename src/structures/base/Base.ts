@@ -17,9 +17,9 @@ import { Logger } from "#template/utils/Logger.js";
 import { Handler } from "./modules/Handlers.js";
 
 export class Base extends Client {
-    public readonly config: ClientConfiguration;
-
-    public logger: Logger;
+    public readonly config: ClientConfiguration = Configuration;
+    public readonly logger: Logger = new Logger();
+    
     public handler: Handler;
 
     public commands: {
@@ -32,18 +32,18 @@ export class Base extends Client {
         modals: Collection<string, Component<ActionRowType.Modal>>;
     };
 
-    public devArray: ApplicationCommandDataResolvable[];
-    public appArray: ApplicationCommandDataResolvable[];
+    public devArray: ApplicationCommandDataResolvable[] = [];
+    public appArray: ApplicationCommandDataResolvable[] = [];
 
     constructor() {
         super({
+            partials: [Partials.Channel, Partials.GuildMember, Partials.Message],
             intents: [
                 GatewayIntentBits.Guilds,
                 GatewayIntentBits.MessageContent,
                 GatewayIntentBits.GuildMessages,
                 GatewayIntentBits.GuildMembers,
             ],
-            partials: [Partials.Channel, Partials.GuildMember, Partials.Message],
             allowedMentions: {
                 repliedUser: false,
             },
@@ -59,8 +59,6 @@ export class Base extends Client {
         });
 
         this.config = Configuration;
-
-        this.logger = new Logger();
         this.handler = new Handler(this);
 
         this.commands = {
@@ -72,9 +70,6 @@ export class Base extends Client {
             menus: new Collection(),
             modals: new Collection(),
         };
-
-        this.appArray = [];
-        this.devArray = [];
 
         this.start();
     }
@@ -111,7 +106,7 @@ export class Base extends Client {
 
             this.logger.log("Client - Commands refreshed.");
         } catch (error) {
-            this.logger.error(`API - ${error}`);
+            throw error;
         }
     }
 

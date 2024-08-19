@@ -1,11 +1,17 @@
 import { type Component, Handlers } from "#template/builders";
 import type { Base } from "#template/client";
-import type { ActionRowType } from "#template/types";
+import { ActionRowType } from "#template/types";
 
 const componentTypes: Record<ActionRowType, string> = {
-    "1": "Button",
-    "2": "Modal",
-    "3": "Select Menu",
+    [ActionRowType.Button]: "Button",
+    [ActionRowType.Modal]: "Modal",
+    [ActionRowType.SelectMenu]: "Select Menu",
+
+    [ActionRowType.StringSelect]: "String Menu",
+    [ActionRowType.UserSelect]: "User Menu",
+    [ActionRowType.RoleSelect]: "Role Menu",
+    [ActionRowType.MentionableSelect]: "Mentionable Menu",    
+    [ActionRowType.ChannelSelect]: "Channel Menu",
 };
 
 export default class Rows extends Handlers {
