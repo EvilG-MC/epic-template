@@ -15,6 +15,12 @@ export interface BaseOptions {
 }
 
 type NonMenuOptions = Omit<BaseOptions, "multiple" | "value">;
-type AnySelectMenuType = ActionRowType.SelectMenu | ActionRowType.StringSelect | ActionRowType.UserSelect | ActionRowType.RoleSelect | ActionRowType.MentionableSelect | ActionRowType.ChannelSelect;
+type AnySelectMenuType =
+    | ActionRowType.SelectMenu
+    | ActionRowType.StringSelect
+    | ActionRowType.UserSelect
+    | ActionRowType.RoleSelect
+    | ActionRowType.MentionableSelect
+    | ActionRowType.ChannelSelect;
 
 export type ComponentOptions<K extends ActionRowType> = When<K, AnySelectMenuType, BaseOptions, NonMenuOptions>;

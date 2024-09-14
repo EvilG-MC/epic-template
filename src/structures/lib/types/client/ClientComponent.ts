@@ -1,4 +1,14 @@
-import type { AnySelectMenuInteraction, Awaitable, ButtonInteraction, ChannelSelectMenuInteraction, MentionableSelectMenuInteraction, ModalSubmitInteraction, RoleSelectMenuInteraction, StringSelectMenuInteraction, UserSelectMenuInteraction } from "discord.js";
+import type {
+    AnySelectMenuInteraction,
+    Awaitable,
+    ButtonInteraction,
+    ChannelSelectMenuInteraction,
+    MentionableSelectMenuInteraction,
+    ModalSubmitInteraction,
+    RoleSelectMenuInteraction,
+    StringSelectMenuInteraction,
+    UserSelectMenuInteraction,
+} from "discord.js";
 
 import type { Base } from "#template/client";
 import type { ActionRowType, ComponentOptions } from "#template/types";
@@ -14,7 +24,6 @@ interface ComponentInteractions {
     [ActionRowType.RoleSelect]: RoleSelectMenuInteraction;
     [ActionRowType.MentionableSelect]: MentionableSelectMenuInteraction;
     [ActionRowType.ChannelSelect]: ChannelSelectMenuInteraction;
-
 }
 
 export interface ClientComponent<K extends ActionRowType> {

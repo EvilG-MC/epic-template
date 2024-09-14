@@ -4,7 +4,14 @@
     "description": "A shitty discord bot template.",
     "main": "./dist/index.js",
     "type": "module",
-    "keywords": [],
+    "keywords": [
+        "discord",
+        "bot",
+        "template",
+        "discordjs",
+        "discord bot",
+        "bot template"
+    ],
     "author": "JustEvil",
     "license": "MIT",
     "homepage": "https://github.com/EvilG-MC/epic-template#readme",

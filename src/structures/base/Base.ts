@@ -19,7 +19,7 @@ import { Handler } from "./modules/Handlers.js";
 export class Base extends Client {
     public readonly config: ClientConfiguration = Configuration;
     public readonly logger: Logger = new Logger();
-    
+
     public handler: Handler;
 
     public commands: {

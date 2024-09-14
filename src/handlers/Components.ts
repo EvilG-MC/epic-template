@@ -10,7 +10,7 @@ const componentTypes: Record<ActionRowType, string> = {
     [ActionRowType.StringSelect]: "String Menu",
     [ActionRowType.UserSelect]: "User Menu",
     [ActionRowType.RoleSelect]: "Role Menu",
-    [ActionRowType.MentionableSelect]: "Mentionable Menu",    
+    [ActionRowType.MentionableSelect]: "Mentionable Menu",
     [ActionRowType.ChannelSelect]: "Channel Menu",
 };
 
