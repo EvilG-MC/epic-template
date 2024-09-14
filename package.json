@@ -8,9 +8,9 @@
     "author": "JustEvil",
     "license": "MIT",
     "homepage": "https://github.com/EvilG-MC/epic-template#readme",
-    "lint-staged": [
-        "biome format --write ."
-    ],
+    "lint-staged": {
+        "*.ts": ["biome format --write ."]
+    },
     "engines": {
         "node": ">=20.12.0"
     },
