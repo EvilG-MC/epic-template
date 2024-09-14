@@ -43,7 +43,16 @@ export class Component<K extends ActionRowType> implements ClientComponent<K> {
      * @returns
      */
     public isMenu(): this is MenuComponent {
-        return this.type === ActionRowType.SelectMenu;
+        const selectMenus: ActionRowType[] = [
+            ActionRowType.ChannelSelect,
+            ActionRowType.MentionableSelect,
+            ActionRowType.RoleSelect,
+            ActionRowType.SelectMenu,
+            ActionRowType.StringSelect,
+            ActionRowType.UserSelect,
+        ];
+
+        return selectMenus.includes(this.type);
     }
 }
 
