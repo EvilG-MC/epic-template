@@ -50,6 +50,7 @@ export class Component<K extends ActionRowType> implements ClientComponent<K> {
             ActionRowType.SelectMenu,
             ActionRowType.StringSelect,
             ActionRowType.UserSelect,
+            ActionRowType.SelectMenu,
         ];
 
         return selectMenus.includes(this.type);
