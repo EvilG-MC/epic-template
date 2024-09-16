@@ -134,7 +134,7 @@ export class Base extends Client {
 
             this.logger.log("Client - Reload complete.");
         } catch (error) {
-            this.logger.error(`Client - ${error}`);
+            throw error;
         }
     }
 }
